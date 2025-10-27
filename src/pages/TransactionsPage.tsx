@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { getTransactions } from '../api/client';
 import type { Transaction, PaginatedResponse } from '../types';
 
@@ -9,7 +8,6 @@ const TransactionsPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [typeFilter, setTypeFilter] = useState('');
   const [page, setPage] = useState(1);
-  const navigate = useNavigate();
 
   const fetchTransactions = useCallback(async () => {
     setLoading(true);
@@ -122,13 +120,10 @@ const TransactionsPage = () => {
                       </td>
                       <td className="px-6 py-4 text-sm font-semibold text-slate-900">${transaction.amount}</td>
                       <td className="px-6 py-4 text-sm">
-                        {transaction.invoice ? (
-                          <button
-                            onClick={() => navigate(`/invoices/${transaction.invoice.id}`)}
-                            className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
-                          >
-                            {transaction.invoice.reference_number}
-                          </button>
+                        {transaction.invoice_reference ? (
+                          <span className="text-slate-900 font-medium">
+                            {transaction.invoice_reference}
+                          </span>
                         ) : (
                           <span className="text-slate-400">N/A</span>
                         )}

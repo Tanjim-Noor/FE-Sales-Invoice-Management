@@ -27,7 +27,7 @@ export interface Transaction {
   id: number;
   transaction_type: 'Sale' | 'Payment';
   amount: string;
-  invoice: Invoice;
+  invoice_reference: string | null;
   transaction_date: string;
 }
 
