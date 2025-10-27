@@ -57,31 +57,31 @@ const InvoiceDetailPage = () => {
 
   if (loading) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <p className="text-center text-xl text-gray-600">Loading...</p>
+      <div className="container mx-auto px-6 py-10">
+        <p className="text-center text-lg text-slate-500">Loading...</p>
       </div>
     );
   }
 
   if (!invoice) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <p className="text-center text-xl text-gray-600">Invoice not found</p>
+      <div className="container mx-auto px-6 py-10">
+        <p className="text-center text-lg text-slate-500">Invoice not found</p>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="container mx-auto px-6 py-10">
+      <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-800">Invoice Details</h1>
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold text-slate-900">Invoice Details</h1>
           <span
-            className={`px-4 py-2 rounded-lg text-lg font-semibold ${
+            className={`px-5 py-2 rounded-full text-base font-semibold ${
               invoice.status === 'Paid'
-                ? 'bg-green-100 text-green-800'
-                : 'bg-yellow-100 text-yellow-800'
+                ? 'bg-emerald-100 text-emerald-700'
+                : 'bg-amber-100 text-amber-700'
             }`}
           >
             {invoice.status}
@@ -89,25 +89,25 @@ const InvoiceDetailPage = () => {
         </div>
 
         {/* Invoice Information */}
-        <div className="bg-white shadow rounded-lg p-6 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white border border-slate-200 rounded-xl p-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h2 className="text-xl font-semibold mb-4 text-gray-700">Invoice Information</h2>
-              <div className="space-y-2">
+              <h2 className="text-lg font-semibold mb-4 text-slate-900">Invoice Information</h2>
+              <div className="space-y-3">
                 <div>
-                  <span className="text-sm text-gray-600">Reference Number:</span>
-                  <p className="font-semibold">{invoice.reference_number}</p>
+                  <span className="text-sm text-slate-500">Reference Number:</span>
+                  <p className="font-semibold text-slate-900">{invoice.reference_number}</p>
                 </div>
                 <div>
-                  <span className="text-sm text-gray-600">Created Date:</span>
-                  <p className="font-semibold">
+                  <span className="text-sm text-slate-500">Created Date:</span>
+                  <p className="font-medium text-slate-700">
                     {new Date(invoice.created_at).toLocaleDateString()} at{' '}
                     {new Date(invoice.created_at).toLocaleTimeString()}
                   </p>
                 </div>
                 <div>
-                  <span className="text-sm text-gray-600">Last Updated:</span>
-                  <p className="font-semibold">
+                  <span className="text-sm text-slate-500">Last Updated:</span>
+                  <p className="font-medium text-slate-700">
                     {new Date(invoice.updated_at).toLocaleDateString()} at{' '}
                     {new Date(invoice.updated_at).toLocaleTimeString()}
                   </p>
@@ -116,26 +116,26 @@ const InvoiceDetailPage = () => {
             </div>
 
             <div>
-              <h2 className="text-xl font-semibold mb-4 text-gray-700">Customer Information</h2>
-              <div className="space-y-2">
+              <h2 className="text-lg font-semibold mb-4 text-slate-900">Customer Information</h2>
+              <div className="space-y-3">
                 <div>
-                  <span className="text-sm text-gray-600">Name:</span>
-                  <p className="font-semibold">{invoice.customer_name}</p>
+                  <span className="text-sm text-slate-500">Name:</span>
+                  <p className="font-semibold text-slate-900">{invoice.customer_name}</p>
                 </div>
                 <div>
-                  <span className="text-sm text-gray-600">Email:</span>
-                  <p className="font-semibold">{invoice.customer_email}</p>
+                  <span className="text-sm text-slate-500">Email:</span>
+                  <p className="font-medium text-slate-700">{invoice.customer_email}</p>
                 </div>
                 {invoice.customer_phone && (
                   <div>
-                    <span className="text-sm text-gray-600">Phone:</span>
-                    <p className="font-semibold">{invoice.customer_phone}</p>
+                    <span className="text-sm text-slate-500">Phone:</span>
+                    <p className="font-medium text-slate-700">{invoice.customer_phone}</p>
                   </div>
                 )}
                 {invoice.customer_address && (
                   <div>
-                    <span className="text-sm text-gray-600">Address:</span>
-                    <p className="font-semibold">{invoice.customer_address}</p>
+                    <span className="text-sm text-slate-500">Address:</span>
+                    <p className="font-medium text-slate-700">{invoice.customer_address}</p>
                   </div>
                 )}
               </div>
@@ -144,34 +144,34 @@ const InvoiceDetailPage = () => {
         </div>
 
         {/* Items */}
-        <div className="bg-white shadow rounded-lg p-6 mb-6">
-          <h2 className="text-xl font-semibold mb-4 text-gray-700">Items</h2>
+        <div className="bg-white border border-slate-200 rounded-xl p-6 mb-6">
+          <h2 className="text-lg font-semibold mb-4 text-slate-900">Items</h2>
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-100 border-b">
+              <thead className="bg-slate-50 border-b border-slate-200">
                 <tr>
-                  <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Description</th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Quantity</th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Unit Price</th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Line Total</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Description</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Quantity</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Unit Price</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Line Total</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-slate-200">
                 {invoice.items.map((item, index) => (
-                  <tr key={item.id || index} className="border-b">
-                    <td className="px-4 py-3 text-sm">{item.description}</td>
-                    <td className="px-4 py-3 text-sm">{item.quantity}</td>
-                    <td className="px-4 py-3 text-sm">${item.unit_price}</td>
-                    <td className="px-4 py-3 text-sm font-semibold">${item.line_total}</td>
+                  <tr key={item.id || index}>
+                    <td className="px-4 py-3 text-sm text-slate-900">{item.description}</td>
+                    <td className="px-4 py-3 text-sm text-slate-700">{item.quantity}</td>
+                    <td className="px-4 py-3 text-sm text-slate-700">${item.unit_price}</td>
+                    <td className="px-4 py-3 text-sm font-semibold text-slate-900">${item.line_total}</td>
                   </tr>
                 ))}
               </tbody>
-              <tfoot className="bg-gray-50">
+              <tfoot className="bg-slate-50 border-t border-slate-200">
                 <tr>
-                  <td colSpan={3} className="px-4 py-3 text-right font-semibold text-gray-700">
+                  <td colSpan={3} className="px-4 py-4 text-right font-semibold text-slate-700">
                     Total Amount:
                   </td>
-                  <td className="px-4 py-3 text-lg font-bold text-blue-600">
+                  <td className="px-4 py-4 text-lg font-bold text-slate-900">
                     ${invoice.total_amount}
                   </td>
                 </tr>
@@ -182,33 +182,33 @@ const InvoiceDetailPage = () => {
 
         {/* Transactions */}
         {invoice.transactions && invoice.transactions.length > 0 && (
-          <div className="bg-white shadow rounded-lg p-6 mb-6">
-            <h2 className="text-xl font-semibold mb-4 text-gray-700">Related Transactions</h2>
+          <div className="bg-white border border-slate-200 rounded-xl p-6 mb-6">
+            <h2 className="text-lg font-semibold mb-4 text-slate-900">Related Transactions</h2>
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-100 border-b">
+                <thead className="bg-slate-50 border-b border-slate-200">
                   <tr>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Type</th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Amount</th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Date</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Type</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Amount</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Date</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="divide-y divide-slate-200">
                   {invoice.transactions.map((transaction) => (
-                    <tr key={transaction.id} className="border-b">
+                    <tr key={transaction.id}>
                       <td className="px-4 py-3 text-sm">
                         <span
-                          className={`px-2 py-1 rounded text-xs font-semibold ${
+                          className={`px-3 py-1 rounded-full text-xs font-medium ${
                             transaction.transaction_type === 'Sale'
-                              ? 'bg-blue-100 text-blue-800'
-                              : 'bg-green-100 text-green-800'
+                              ? 'bg-blue-100 text-blue-700'
+                              : 'bg-emerald-100 text-emerald-700'
                           }`}
                         >
                           {transaction.transaction_type}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-sm font-semibold">${transaction.amount}</td>
-                      <td className="px-4 py-3 text-sm">
+                      <td className="px-4 py-3 text-sm font-semibold text-slate-900">${transaction.amount}</td>
+                      <td className="px-4 py-3 text-sm text-slate-700">
                         {new Date(transaction.transaction_date).toLocaleDateString()} at{' '}
                         {new Date(transaction.transaction_date).toLocaleTimeString()}
                       </td>
@@ -221,25 +221,25 @@ const InvoiceDetailPage = () => {
         )}
 
         {/* Actions */}
-        <div className="bg-white shadow rounded-lg p-6">
+        <div className="bg-white border border-slate-200 rounded-xl p-6">
           <div className="flex flex-wrap gap-4">
             <button
               onClick={() => navigate('/invoices')}
-              className="bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-600"
+              className="border border-slate-300 hover:border-slate-400 bg-white text-slate-700 hover:text-slate-900 px-6 py-2.5 rounded-lg font-medium transition-colors"
             >
               Back to List
             </button>
             {invoice.status === 'Pending' && (
               <button
                 onClick={handlePay}
-                className="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-lg font-medium transition-colors"
               >
                 Mark as Paid
               </button>
             )}
             <button
               onClick={handleDelete}
-              className="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600"
+              className="bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-medium transition-colors"
             >
               Delete Invoice
             </button>

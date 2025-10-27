@@ -58,29 +58,29 @@ const InvoicesPage = () => {
 
   if (loading && !data) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <p className="text-center text-xl text-gray-600">Loading...</p>
+      <div className="container mx-auto px-6 py-10">
+        <p className="text-center text-lg text-slate-500">Loading...</p>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">Invoices</h1>
+    <div className="container mx-auto px-6 py-10">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold text-slate-900">Invoices</h1>
         <Link
           to="/invoices/create"
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          className="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-lg font-medium transition-colors"
         >
           + Create Invoice
         </Link>
       </div>
 
       {/* Filters */}
-      <div className="bg-white shadow rounded-lg p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white border border-slate-200 rounded-xl p-6 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-slate-700 mb-2">
               Search (Reference/Customer)
             </label>
             <input
@@ -90,12 +90,12 @@ const InvoicesPage = () => {
                 setSearch(e.target.value);
                 setPage(1);
               }}
-              className="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:border-blue-500"
+              className="border border-slate-300 rounded-lg px-4 py-2.5 w-full focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
               placeholder="Search invoices..."
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-slate-700 mb-2">
               Status Filter
             </label>
             <select
@@ -104,7 +104,7 @@ const InvoicesPage = () => {
                 setStatusFilter(e.target.value);
                 setPage(1);
               }}
-              className="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:border-blue-500"
+              className="border border-slate-300 rounded-lg px-4 py-2.5 w-full focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
             >
               <option value="">All</option>
               <option value="Pending">Pending</option>
@@ -115,66 +115,66 @@ const InvoicesPage = () => {
       </div>
 
       {/* Invoices Table */}
-      <div className="bg-white shadow rounded-lg overflow-hidden">
+      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
         {loading ? (
-          <div className="p-8 text-center">
-            <p className="text-gray-600">Loading...</p>
+          <div className="p-10 text-center">
+            <p className="text-slate-500">Loading...</p>
           </div>
         ) : data && data.results.length > 0 ? (
           <>
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-100 border-b">
+                <thead className="bg-slate-50 border-b border-slate-200">
                   <tr>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Reference</th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Customer</th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Email</th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Total</th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Date</th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Actions</th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Reference</th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Customer</th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Email</th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Status</th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Total</th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Date</th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Actions</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="divide-y divide-slate-200">
                   {data.results.map((invoice) => (
-                    <tr key={invoice.id} className="border-b hover:bg-gray-50">
-                      <td className="px-4 py-3 text-sm">{invoice.reference_number}</td>
-                      <td className="px-4 py-3 text-sm">{invoice.customer_name}</td>
-                      <td className="px-4 py-3 text-sm">{invoice.customer_email}</td>
-                      <td className="px-4 py-3 text-sm">
+                    <tr key={invoice.id} className="hover:bg-slate-50 transition-colors">
+                      <td className="px-6 py-4 text-sm text-slate-900 font-medium">{invoice.reference_number}</td>
+                      <td className="px-6 py-4 text-sm text-slate-700">{invoice.customer_name}</td>
+                      <td className="px-6 py-4 text-sm text-slate-600">{invoice.customer_email}</td>
+                      <td className="px-6 py-4 text-sm">
                         <span
-                          className={`px-2 py-1 rounded text-xs font-semibold ${
+                          className={`px-3 py-1 rounded-full text-xs font-medium ${
                             invoice.status === 'Paid'
-                              ? 'bg-green-100 text-green-800'
-                              : 'bg-yellow-100 text-yellow-800'
+                              ? 'bg-emerald-100 text-emerald-700'
+                              : 'bg-amber-100 text-amber-700'
                           }`}
                         >
                           {invoice.status}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-sm font-semibold">${invoice.total_amount}</td>
-                      <td className="px-4 py-3 text-sm">
+                      <td className="px-6 py-4 text-sm font-semibold text-slate-900">${invoice.total_amount}</td>
+                      <td className="px-6 py-4 text-sm text-slate-600">
                         {new Date(invoice.created_at).toLocaleDateString()}
                       </td>
-                      <td className="px-4 py-3 text-sm">
-                        <div className="flex space-x-2">
+                      <td className="px-6 py-4 text-sm">
+                        <div className="flex space-x-4">
                           <button
                             onClick={() => navigate(`/invoices/${invoice.id}`)}
-                            className="text-blue-600 hover:text-blue-800 font-medium"
+                            className="text-slate-900 hover:text-slate-700 font-medium transition-colors"
                           >
                             View
                           </button>
                           {invoice.status === 'Pending' && (
                             <button
                               onClick={() => handlePay(invoice.id)}
-                              className="text-green-600 hover:text-green-800 font-medium"
+                              className="text-emerald-600 hover:text-emerald-700 font-medium transition-colors"
                             >
                               Pay
                             </button>
                           )}
                           <button
                             onClick={() => handleDelete(invoice.id)}
-                            className="text-red-600 hover:text-red-800 font-medium"
+                            className="text-red-600 hover:text-red-700 font-medium transition-colors"
                           >
                             Delete
                           </button>
@@ -187,23 +187,23 @@ const InvoicesPage = () => {
             </div>
 
             {/* Pagination */}
-            <div className="px-4 py-3 bg-gray-50 border-t flex justify-between items-center">
-              <p className="text-sm text-gray-700">
+            <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 flex justify-between items-center">
+              <p className="text-sm text-slate-600">
                 Showing {data.results.length} of {data.count} invoices
               </p>
               <div className="flex space-x-2">
                 <button
                   onClick={() => setPage(page - 1)}
                   disabled={!data.previous}
-                  className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  className="px-4 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 disabled:bg-slate-300 disabled:cursor-not-allowed font-medium transition-colors"
                 >
                   Previous
                 </button>
-                <span className="px-3 py-1">Page {page}</span>
+                <span className="px-4 py-2 text-sm font-medium text-slate-700">Page {page}</span>
                 <button
                   onClick={() => setPage(page + 1)}
                   disabled={!data.next}
-                  className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  className="px-4 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 disabled:bg-slate-300 disabled:cursor-not-allowed font-medium transition-colors"
                 >
                   Next
                 </button>
@@ -211,11 +211,11 @@ const InvoicesPage = () => {
             </div>
           </>
         ) : (
-          <div className="p-8 text-center">
-            <p className="text-gray-600 mb-4">No invoices found</p>
+          <div className="p-10 text-center">
+            <p className="text-slate-500 mb-5">No invoices found</p>
             <Link
               to="/invoices/create"
-              className="inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+              className="inline-block bg-slate-900 hover:bg-slate-800 text-white px-6 py-3 rounded-lg font-medium transition-colors"
             >
               Create your first invoice
             </Link>

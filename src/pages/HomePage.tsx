@@ -35,50 +35,50 @@ const HomePage = () => {
   if (loading) {
     return (
       <div className="text-center py-20">
-        <p className="text-xl text-gray-600">Loading...</p>
+        <p className="text-lg text-slate-500">Loading...</p>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8 text-gray-800">Dashboard</h1>
+    <div className="container mx-auto px-6 py-10">
+      <h1 className="text-3xl font-bold mb-10 text-slate-900">Dashboard</h1>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-white shadow rounded-lg p-6">
-          <h3 className="text-gray-600 text-sm font-semibold mb-2">Total Invoices</h3>
-          <p className="text-4xl font-bold text-blue-600">{stats.total}</p>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div className="bg-white border border-slate-200 rounded-xl p-6">
+          <h3 className="text-slate-500 text-sm font-medium mb-3">Total Invoices</h3>
+          <p className="text-4xl font-bold text-slate-900">{stats.total}</p>
         </div>
-        <div className="bg-white shadow rounded-lg p-6">
-          <h3 className="text-gray-600 text-sm font-semibold mb-2">Pending Invoices</h3>
-          <p className="text-4xl font-bold text-yellow-600">{stats.pending}</p>
+        <div className="bg-white border border-slate-200 rounded-xl p-6">
+          <h3 className="text-slate-500 text-sm font-medium mb-3">Pending Invoices</h3>
+          <p className="text-4xl font-bold text-amber-600">{stats.pending}</p>
         </div>
-        <div className="bg-white shadow rounded-lg p-6">
-          <h3 className="text-gray-600 text-sm font-semibold mb-2">Paid Invoices</h3>
-          <p className="text-4xl font-bold text-green-600">{stats.paid}</p>
+        <div className="bg-white border border-slate-200 rounded-xl p-6">
+          <h3 className="text-slate-500 text-sm font-medium mb-3">Paid Invoices</h3>
+          <p className="text-4xl font-bold text-emerald-600">{stats.paid}</p>
         </div>
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-white shadow rounded-lg p-6">
-        <h2 className="text-xl font-bold mb-4 text-gray-800">Quick Actions</h2>
-        <div className="space-y-3">
+      <div className="bg-white border border-slate-200 rounded-xl p-6">
+        <h2 className="text-xl font-semibold mb-5 text-slate-900">Quick Actions</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Link
             to="/invoices"
-            className="block bg-blue-500 text-white px-4 py-3 rounded hover:bg-blue-600 text-center"
+            className="border border-slate-300 hover:border-slate-400 bg-white px-6 py-4 rounded-lg text-center font-medium text-slate-700 hover:text-slate-900 transition-colors"
           >
             View All Invoices
           </Link>
           <Link
             to="/invoices/create"
-            className="block bg-green-500 text-white px-4 py-3 rounded hover:bg-green-600 text-center"
+            className="bg-slate-900 hover:bg-slate-800 text-white px-6 py-4 rounded-lg text-center font-medium transition-colors"
           >
             Create New Invoice
           </Link>
           <Link
             to="/transactions"
-            className="block bg-purple-500 text-white px-4 py-3 rounded hover:bg-purple-600 text-center"
+            className="border border-slate-300 hover:border-slate-400 bg-white px-6 py-4 rounded-lg text-center font-medium text-slate-700 hover:text-slate-900 transition-colors"
           >
             View Transactions
           </Link>
