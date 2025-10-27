@@ -100,12 +100,29 @@ const CreateInvoicePage = () => {
       };
 
       const invoice = await createInvoice(data);
+      
+      // Debug: Log the full response
+      console.log('Invoice response:', invoice);
+      console.log('Invoice ID:', invoice?.id);
+      console.log('Invoice type:', typeof invoice);
+      console.log('ID type:', typeof invoice?.id);
+      
+      // Validate that we received a valid invoice with an ID
+      if (!invoice || !invoice.id) {
+        console.error('Invalid invoice response:', { invoice, hasId: !!invoice?.id });
+        throw new Error(`Invalid response from server: Missing invoice ID. Received: ${JSON.stringify(invoice)}`);
+      }
+      
       alert('Invoice created successfully!');
+      // Navigate to the new invoice detail page
       navigate(`/invoices/${invoice.id}`);
-    } catch (error: any) {
-      const message = error.response?.data?.detail || 
-                     error.response?.data?.reference_number?.[0] || 
-                     'Failed to create invoice';
+    } catch (error: unknown) {
+      console.error('Error creating invoice:', error);
+      const message = error instanceof Error 
+        ? error.message
+        : (error as { response?: { data?: { detail?: string; reference_number?: string[] } } })?.response?.data?.detail || 
+          (error as { response?: { data?: { detail?: string; reference_number?: string[] } } })?.response?.data?.reference_number?.[0] || 
+          'Failed to create invoice';
       alert(`Error: ${message}`);
     } finally {
       setLoading(false);

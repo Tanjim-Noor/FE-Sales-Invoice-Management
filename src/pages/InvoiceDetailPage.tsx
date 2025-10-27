@@ -11,20 +11,30 @@ const InvoiceDetailPage = () => {
 
   useEffect(() => {
     const fetchInvoice = async () => {
+      // Validate ID exists and is a valid number
+      if (!id || id === 'undefined' || isNaN(Number(id))) {
+        alert('Error fetching invoice: Not found.');
+        navigate('/invoices');
+        return;
+      }
+
       try {
         const data = await getInvoice(Number(id));
         setInvoice(data);
-      } catch (error: any) {
-        alert('Error fetching invoice: ' + (error.response?.data?.detail || error.message));
+      } catch (error: unknown) {
+        console.error('Error fetching invoice:', error);
+        const message = error instanceof Error 
+          ? error.message
+          : (error as { response?: { data?: { detail?: string } } })?.response?.data?.detail || 
+            'Failed to fetch invoice';
+        alert('Error fetching invoice: ' + message);
         navigate('/invoices');
       } finally {
         setLoading(false);
       }
     };
 
-    if (id) {
-      fetchInvoice();
-    }
+    fetchInvoice();
   }, [id, navigate]);
 
   const handlePay = async () => {
@@ -34,8 +44,12 @@ const InvoiceDetailPage = () => {
       const updated = await payInvoice(invoice.id);
       setInvoice(updated);
       alert('Invoice marked as paid successfully!');
-    } catch (error: any) {
-      alert('Error paying invoice: ' + (error.response?.data?.detail || error.message));
+    } catch (error: unknown) {
+      const message = error instanceof Error 
+        ? error.message
+        : (error as { response?: { data?: { detail?: string } } })?.response?.data?.detail || 
+          'Failed to mark invoice as paid';
+      alert('Error paying invoice: ' + message);
     }
   };
 
@@ -50,8 +64,12 @@ const InvoiceDetailPage = () => {
       await deleteInvoice(invoice.id);
       alert('Invoice deleted successfully');
       navigate('/invoices');
-    } catch (error: any) {
-      alert('Error deleting invoice: ' + (error.response?.data?.detail || error.message));
+    } catch (error: unknown) {
+      const message = error instanceof Error 
+        ? error.message
+        : (error as { response?: { data?: { detail?: string } } })?.response?.data?.detail || 
+          'Failed to delete invoice';
+      alert('Error deleting invoice: ' + message);
     }
   };
 
